@@ -1,0 +1,9 @@
+node_modules/
+vendor/
+
+
+# .v4p backup files
+*~.xml
+
+# Dynamic plugins .dll
+bin/

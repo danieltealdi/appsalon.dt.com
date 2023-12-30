@@ -5,7 +5,9 @@
     "autoload": {
         "psr-4": {
             "Daniel\\AppsalonDtCom\\": "src/",
-            "MVC\\": "./"
+            "MVC\\": "./",
+            "Controllers\\":"./controllers",
+            "Model\\": "./models"
         }
     },
     "authors": [

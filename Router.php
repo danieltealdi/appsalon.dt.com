@@ -28,7 +28,9 @@ class Router
 
         // $auth = $_SESSION['login'] ?? null;
 
-        $currentUrl = $_SERVER['PATH_INFO'] ?? '/';
+        //$currentUrl = $_SERVER['PATH_INFO'] ?? '/';
+        $currentUrl = $_SERVER['REQUEST_URI'] ?? "/public/";
+        $currentUrl=parse_url($currentUrl)['path'];
         $method = $_SERVER['REQUEST_METHOD'];
 
         if ($method === 'GET') {

@@ -7,7 +7,8 @@
             "Daniel\\AppsalonDtCom\\": "src/",
             "MVC\\": "./",
             "Controllers\\":"./controllers",
-            "Model\\": "./models"
+            "Model\\": "./models",
+            "Classes\\": "./classes"
         }
     },
     "authors": [
@@ -16,5 +17,8 @@
             "email": "daniel@danieltealdi.com"
         }
     ],
-    "require": {}
+    "require": {
+        "phpmailer/phpmailer": "^6.9.1"
+    }
+    
 }

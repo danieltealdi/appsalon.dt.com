@@ -2,6 +2,7 @@
 
 namespace Controllers;
 
+use Classes\Mailer;
 use MVC\Router;
 use Model\Usuario;
 //use Model\Admin;
@@ -32,6 +33,23 @@ class LoginController
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $usuario->sincronizar($_POST);
             $alertas=$usuario->validarNuevaCuenta();
+            if(empty($alertas)){
+                $resultado=$usuario->existeUsuario();
+                if($resultado->num_rows){
+                    $alertas=$usuario::getAlertas();
+                }else{
+                    $usuario->hashPassword();
+                    //var_dump($usuario->password);
+                    $usuario->crearToken();
+                    //var_dump($usuario->token);
+                    $mailer= new Mailer($usuario->email, $usuario->nombre, $usuario->token);
+                    $mailer->enviarConfirmacion();
+                    $resultado=$usuario->guardar();
+                    if($resultado){
+                        header('Location: /mensaje');
+                    }
+                }
+            }
             
             //var_dump($alertas);  die;        
         }
@@ -40,5 +58,12 @@ class LoginController
             'alertas'=>$alertas
         ]);
         
+    }
+    public static function confirmar(){
+
+    }
+    public static function mensaje(Router $router)
+    {
+        $router->render('auth/mensaje', []);
     }
 }

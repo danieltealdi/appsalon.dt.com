@@ -19,7 +19,7 @@ class LoginController
     }
     public static function olvide(Router $router)
     {
-        echo "Desde Olvide";
+        $router->render('auth/olvide-password', []);
     }
     public static function recuperar(Router $router)
     {
@@ -27,11 +27,18 @@ class LoginController
     }
     public static function crear(Router $router)
     {
-        if ($_SERVER('REQUEST_METHOD') === 'post') {
-            $usuario = new Usuario($_POST);
-            var_dump($usuario);
-            die;
+        $usuario = new Usuario;
+        $alertas=[];
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $usuario->sincronizar($_POST);
+            $alertas=$usuario->validarNuevaCuenta();
+            
+            //var_dump($alertas);  die;        
         }
-        $router->render('auth/crear_cuenta', []);
+        $router->render('auth/crear-cuenta', [
+            'usuario'=>$usuario,
+            'alertas'=>$alertas
+        ]);
+        
     }
 }

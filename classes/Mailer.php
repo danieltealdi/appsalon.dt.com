@@ -39,7 +39,37 @@ class Mailer
 
         $contenido = '<html>';
         $contenido .= '<p><strong>Hola ' . $this->nombre . '</strong> Has creado tu cuenta en App Salon, solo debes confirmarla presionando el siguiente enlace:<p>';
-        $contenido .= '<p>Presiona aqui: <a href="http://appsalon.dt.com/confirmar-cuenta?token=' . $this->token . '" >Confirmar Cuenta<a></p>';
+        $contenido .= '<p>Presiona aqui: <a href="http://appsalon.dt.com/confirmar-cuenta?token=' . $this->token . '" >Reestablecer password<a></p>';
+        $contenido .= '<p>Si tu no solicitaste reestablecer tu password, puedes ignorar el mensaje</p>';
+        $contenido .= '<html>';
+        $mail->Body    = $contenido;
+        $resultado = $mail->send();
+        if ($resultado === true) {
+            $mensaje = 'exito';
+        } else if (isset($resultado)) {
+            $mensaje = 'error';
+        }
+        //echo $mensaje;
+    }
+    public function enviarInstrucciones(){
+        $mail = new PHPMailer();
+        $mail->isSMTP();
+        $mail->Host = 'sandbox.smtp.mailtrap.io';
+        $mail->SMTPAuth = true;
+        $mail->Port = 2525;
+        $mail->Username = '1f862d49f99af1';
+        $mail->Password = '70947adcb12ba0';
+
+        $mail->setFrom('cuentas@appsalon.com');
+        $mail->addAddress($this->email, $this->nombre);
+        //$mail->addAddress('cuentas@appsalon.com', 'Appsalon.com');
+        $mail->Subject = 'Restablece tu password';
+        $mail->isHTML(true);
+        $mail->CharSet = 'UTF-8';
+
+        $contenido = '<html>';
+        $contenido .= '<p><strong>Hola ' . $this->nombre . '</strong> Has solicitado reestablecer tu password, sigue el siguiente enlace para hacerlo.<p>';
+        $contenido .= '<p>Presiona aqui: <a href="http://appsalon.dt.com/recuperar?token=' . $this->token . '" >Reestablecer Cuenta<a></p>';
         $contenido .= '<p>Si tu no solicitaste esta cuenta, puedes ignorar el mensaje</p>';
         $contenido .= '<html>';
         $mail->Body    = $contenido;
@@ -50,5 +80,6 @@ class Mailer
             $mensaje = 'error';
         }
         //echo $mensaje;
+       
     }
 }

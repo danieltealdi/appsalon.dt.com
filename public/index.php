@@ -3,6 +3,7 @@
 
 require_once __DIR__ . '/../includes/app.php';
 use Controllers\LoginController;
+use Controllers\CitaController;
 use MVC\Router;
 
 $router = new Router();
@@ -24,6 +25,9 @@ $router->get('/logout', [LoginController::class, 'logout']);
 $router->get('/logout', [LoginController::class, 'logout']);
 $router->get('/logout', [LoginController::class, 'logout']);
 $router->get('/logout', [LoginController::class, 'logout']);
+//Area privada
+$router->get('/cita', [CitaController::class, 'index']);
+
 
 
 

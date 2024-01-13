@@ -15,5 +15,11 @@
         border: none;
         border-radius: 5px;
         padding: calc(v.$separacion/4);
+
+        &:disabled{
+            background-color: lighten($color: v.$negro, $amount: 30%);
+            color: v.$blanco;
+            cursor: not-allowed;
+        }
     }
 }

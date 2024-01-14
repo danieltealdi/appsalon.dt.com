@@ -1,9 +1,11 @@
-<?php 
+<?php
+
 //echo "index"; die;
 
 require_once __DIR__ . '/../includes/app.php';
 use Controllers\LoginController;
 use Controllers\CitaController;
+use Controllers\ApiController;
 use MVC\Router;
 
 $router = new Router();
@@ -27,7 +29,9 @@ $router->get('/logout', [LoginController::class, 'logout']);
 $router->get('/logout', [LoginController::class, 'logout']);
 //Area privada
 $router->get('/cita', [CitaController::class, 'index']);
-
+//API
+//$router->get('/api/servicios', [ApiController::class, 'index']);
+$router->get('/api/servicios', [ApiController::class, 'index']);
 
 
 

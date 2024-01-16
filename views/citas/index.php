@@ -17,6 +17,8 @@
 		<h2>Tus datos y cita</h2>
 		<p class='text-center'>Coloca tus datos y fecha de tu cita</p>
 		<form class="formulario">
+			<!-- si das enter vuelve al paso 1 en lugar de validar la entrada actual
+			-->
 			<div class='campo'>
 				<label for="nombre">Nombre</label>
 				<input id='nombre' value="<?php echo $nombre ?>"
@@ -25,18 +27,19 @@
 			</div>
 			<div class='campo'>
 				<label for="nofechambre">Fecha</label>
-				<input id='fecha' type="date">
+				<input id='fecha' type="date"
+					min="<?php echo(date('Y-m-d', strtotime('+1 day'))) ?>">
 			</div>
 			<div class='campo'>
 				<label for="hora">Hora</label>
 				<input id='hora' type="time">
 			</div>
-
+			<input type="hidden" id="id" value="<?php echo $id; ?>">
 		</form>
 
 
 	</div>
-	<div id='paso-3' class='seccion'>
+	<div id='paso-3' class='seccion contenido-resumen'>
 		<h2>Resumen</h2>
 		<p class='text-center'>verifica que los datos son correctos</p>
 
@@ -52,7 +55,7 @@
 
 </div>
 <?php
-$script = "<script src='build/js/app.js'></script>"
+$script = "<script src='build/js/APP.js'></script>"
 				?>
 
 

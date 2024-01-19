@@ -6,6 +6,7 @@ require_once __DIR__ . '/../includes/app.php';
 use Controllers\LoginController;
 use Controllers\CitaController;
 use Controllers\ApiController;
+use Controllers\AdminController;
 use MVC\Router;
 
 $router = new Router();
@@ -22,7 +23,7 @@ $router->get('/olvide', [LoginController::class, 'olvide']);
 $router->post('/olvide', [LoginController::class, 'olvide']);
 $router->get('/recuperar', [LoginController::class, 'recuperar']);
 $router->post('/recuperar', [LoginController::class, 'recuperar']);
-$router->get('/logout', [LoginController::class, 'logout']);
+$router->get('/admin', [AdminController::class, 'index']);
 $router->get('/logout', [LoginController::class, 'logout']);
 $router->get('/logout', [LoginController::class, 'logout']);
 $router->get('/logout', [LoginController::class, 'logout']);

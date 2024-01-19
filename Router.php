@@ -9,7 +9,9 @@ class Router
 
     public function get($url, $fn)
     {
-
+        // Log the URL and function being registered
+        //echo "Registering GET route: $url\n";
+        //var_dump($fn);
         $this->getRoutes[$url] = $fn;
     }
 

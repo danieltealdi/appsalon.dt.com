@@ -41,6 +41,7 @@ class ActiveRecord
     public static function consultarSQL($query)
     {
         // Consultar la base de datos
+        //var_dump($query);
         $resultado = self::$db->query($query);
 
         // Iterar los resultados
@@ -139,6 +140,12 @@ class ActiveRecord
         $query = "SELECT * FROM " . static::$tabla . " WHERE {$columna} = '{$valor}'";
         $resultado = self::consultarSQL($query);
         return array_shift($resultado) ;
+    }
+    public static function SQL($query)
+    {
+        $resultado = self::consultarSQL($query);
+        //debuguear($resultado);
+        return $resultado ;
     }
 
     // Obtener Registros con cierta cantidad

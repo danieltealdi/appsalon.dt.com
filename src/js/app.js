@@ -247,7 +247,7 @@ function mostrarResumen() {
     while(resumen.firstChild) {
         resumen.removeChild(resumen.firstChild);
     }
-console.log(cita);
+//console.log(cita);
     if(Object.values(cita).includes('') || cita.servicios.length === 0 ) {
         mostrarAlerta('Faltan datos de Servicios, Fecha u Hora', 'error', '.contenido-resumen', false);
 
@@ -325,7 +325,7 @@ async function reservarCita() {
     const { nombre, fecha, hora, servicios, id} = cita;
 
     const idServicios = servicios.map( servicio => servicio.id );
-    // console.log(idServicios);
+    //console.log(idServicios);
 
     const datos = new FormData();
     
@@ -334,18 +334,18 @@ async function reservarCita() {
     datos.append('usuarioId', id);
     datos.append('servicios', idServicios);
 
-    // console.log([...datos]);
+    //console.log([...datos]);
 
     try {
         // Petición hacia la api
-        const url = 'http://localhost:3000/api/citas'
+        const url = 'http://appsalon.dt.com/api/citas'
         const respuesta = await fetch(url, {
             method: 'POST',
             body: datos
         });
 
         const resultado = await respuesta.json();
-        console.log(resultado);
+        //console.log(resultado.resultado);
         
         if(resultado.resultado) {
             Swal.fire({

@@ -46,7 +46,10 @@ class LoginController
     }
     public static function logout(Router $router)
     {
-        echo "Desde logout";
+        session_start();
+        $_SESSION = [];
+        //debuguear($_SESSION);
+        header('Location: /');
     }
     public static function olvide(Router $router)
     {
@@ -94,7 +97,7 @@ class LoginController
             $password = new Usuario($_POST);
             $alertas = $password->validarPassword();
             if(empty($alertas)) {
-                $usuario->password=$password->password;
+                $usuario->password = $password->password;
                 $usuario->token = null;
                 $usuario->hashPassword();
                 $resultado = $usuario->guardar();

@@ -22,6 +22,9 @@
         padding: 3rem 0;
         width: 95%;
         margin: 0 auto;
+        @include m.tablet {
+            overflow: scroll;
+        }
     }
 }
 .barra{

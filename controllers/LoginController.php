@@ -26,13 +26,14 @@ class LoginController
                         $_SESSION['nombre'] = $usuario->nombre . " " . $usuario->apellido;
                         $_SESSION['email'] = $usuario->email;
                         $_SESSION['login'] = true;
+                        $_SESSION['admin'] = $usuario->admin ?? null;
+                            
                         if($usuario->admin === '1') {
-                            $_SESSION['admin'] = $usuario->admin ?? null;
                             header('Location: /admin');
                         } else {
                             header('Location: /cita');
                         }
-                        debuguear($_SESSION);
+                        //debuguear($_SESSION);
                     }
                 } else {
                     Usuario::setAlerta('error', 'Usuario no encontrado');

@@ -27,3 +27,11 @@ function esUltimo(string $actual, string $proximo): bool {
     }
     return false;
 }
+function isAdmin():void
+{
+    //debuguear($_SESSION);
+    if($_SESSION['admin']!=='1') {
+        header('Location: /');
+    }
+}
+ 

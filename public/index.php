@@ -7,6 +7,7 @@ use Controllers\LoginController;
 use Controllers\CitaController;
 use Controllers\ApiController;
 use Controllers\AdminController;
+use Controllers\ServicioController;
 use MVC\Router;
 
 $router = new Router();
@@ -25,17 +26,19 @@ $router->get('/recuperar', [LoginController::class, 'recuperar']);
 $router->post('/recuperar', [LoginController::class, 'recuperar']);
 $router->get('/admin', [AdminController::class, 'index']);
 $router->get('/logout', [LoginController::class, 'logout']);
-$router->get('/logout', [LoginController::class, 'logout']);
-$router->get('/logout', [LoginController::class, 'logout']);
-$router->get('/logout', [LoginController::class, 'logout']);
 //Area privada
 $router->get('/cita', [CitaController::class, 'index']);
 //API
-//$router->get('/api/servicios', [ApiController::class, 'index']);
 $router->get('/api/servicios', [ApiController::class, 'index']);
 $router->post('/api/citas', [ApiController::class, 'guardar']);
 $router->post('/api/eliminar', [ApiController::class, 'eliminar']);
-
+//CRUD Servicios
+$router->get('/servicios', [ServicioController::class, 'index']);
+$router->get('/servicios/crear', [ServicioController::class, 'crear']);
+$router->post('/servicios/crear', [ServicioController::class, 'crear']);
+$router->get('/servicios/actualizar', [ServicioController::class, 'actualizar']);
+$router->post('/servicios/actualizar', [ServicioController::class, 'actualizar']);
+$router->post('/servicios/eliminar', [ServicioController::class, 'eliminar']);
 
 
 

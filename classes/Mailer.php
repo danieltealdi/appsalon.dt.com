@@ -24,11 +24,11 @@ class Mailer
     {
         $mail = new PHPMailer();
         $mail->isSMTP();
-        $mail->Host = 'sandbox.smtp.mailtrap.io';
+        $mail->Host = $_ENV['EMAIL_HOST'];
         $mail->SMTPAuth = true;
-        $mail->Port = 2525;
-        $mail->Username = '1f862d49f99af1';
-        $mail->Password = '70947adcb12ba0';
+        $mail->Port = $_ENV['EMAIL_PORT'];
+        $mail->Username = $_ENV['EMAIL_USER'];
+        $mail->Password = $_ENV['EMAIL_PASS'];
 
         $mail->setFrom('cuentas@appsalon.com');
         $mail->addAddress($this->email, $this->nombre);
@@ -39,7 +39,7 @@ class Mailer
 
         $contenido = '<html>';
         $contenido .= '<p><strong>Hola ' . $this->nombre . '</strong> Has creado tu cuenta en App Salon, solo debes confirmarla presionando el siguiente enlace:<p>';
-        $contenido .= '<p>Presiona aqui: <a href="http://appsalon.dt.com/confirmar-cuenta?token=' . $this->token . '" >Reestablecer password<a></p>';
+        $contenido .= '<p>Presiona aqui: <a href="' . $_ENV["URL"]   . '/confirmar-cuenta?token=" . $this->token . " >Reestablecer password<a></p>';
         $contenido .= '<p>Si tu no solicitaste reestablecer tu password, puedes ignorar el mensaje</p>';
         $contenido .= '<html>';
         $mail->Body    = $contenido;
@@ -54,11 +54,11 @@ class Mailer
     public function enviarInstrucciones(){
         $mail = new PHPMailer();
         $mail->isSMTP();
-        $mail->Host = 'sandbox.smtp.mailtrap.io';
+        $mail->Host = $_ENV['EMAIL_HOST'];
         $mail->SMTPAuth = true;
-        $mail->Port = 2525;
-        $mail->Username = '1f862d49f99af1';
-        $mail->Password = '70947adcb12ba0';
+        $mail->Port = $_ENV['EMAIL_PORT'];
+        $mail->Username = $_ENV['EMAIL_USER'];
+        $mail->Password = $_ENV['EMAIL_PASS'];
 
         $mail->setFrom('cuentas@appsalon.com');
         $mail->addAddress($this->email, $this->nombre);
@@ -69,7 +69,7 @@ class Mailer
 
         $contenido = '<html>';
         $contenido .= '<p><strong>Hola ' . $this->nombre . '</strong> Has solicitado reestablecer tu password, sigue el siguiente enlace para hacerlo.<p>';
-        $contenido .= '<p>Presiona aqui: <a href="http://appsalon.dt.com/recuperar?token=' . $this->token . '" >Reestablecer Cuenta<a></p>';
+        $contenido .= '<p>Presiona aqui: <a href="' . $_ENV["URL"]   . '/recuperar?token=' . $this->token . '" >Reestablecer Cuenta<a></p>';
         $contenido .= '<p>Si tu no solicitaste esta cuenta, puedes ignorar el mensaje</p>';
         $contenido .= '<html>';
         $mail->Body    = $contenido;

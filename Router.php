@@ -13,6 +13,7 @@ class Router
         //echo "Registering GET route: $url\n";
         //var_dump($fn);
         $this->getRoutes[$url] = $fn;
+        //var_dump($this->getRoutes);
     }
 
     public function post($url, $fn)
@@ -32,7 +33,7 @@ class Router
         // $auth = $_SESSION['login'] ?? null;
 
         //$currentUrl = $_SERVER['PATH_INFO'] ?? '/';
-        $currentUrl = $_SERVER['REQUEST_URI'] ?? "/public/";
+        $currentUrl = strtok($_SERVER['REQUEST_URI'], '?') ?? "/public/";
         $currentUrl = parse_url($currentUrl)['path'];
         $method = $_SERVER['REQUEST_METHOD'];
 
